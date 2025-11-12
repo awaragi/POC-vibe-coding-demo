@@ -1,0 +1,19 @@
+# Ignore everything by default
+*
+
+!.gitignore
+
+# Allow specific directories
+!.vscode/
+!.vscode/**
+!Agents/
+!Agents/**
+!Cases/
+!Cases/**
+!Presentations/
+!Presentations/**
+
+# Allow specific files
+!README.md
+!LICENSE
+

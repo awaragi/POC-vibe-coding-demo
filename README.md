@@ -29,6 +29,16 @@ This repository contains AI agent prompts and case studies for building demo-rea
 - **Step-by-Step Implementation**: Testable increments with clear validation
 - **Demo-Ready Output**: Polished applications suitable for executive presentations
 
+## Presentations
+
+To view the project presentations:
+
+```bash
+PORT=8880 npx @marp-team/marp-cli -s Presentations
+```
+
+Then open [http://localhost:8880](http://localhost:8880) in your browser.
+
 ## License
 
 See LICENSE file for details.

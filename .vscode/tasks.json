@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Marp Server",
+      "type": "shell",
+      "command": "PORT=8880 npx @marp-team/marp-cli -s Presentations",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
