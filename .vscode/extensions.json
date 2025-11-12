@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "marp-team.marp-vscode",
+    "ms-vscode-remote.remote-wsl",
+    "github.copilot",
+    "github.copilot-chat"
+  ]
+}

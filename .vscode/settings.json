@@ -1,0 +1,9 @@
+{
+  "markdown.marp.html": true,
+  "markdown.marp.themes": [
+    "./themes"
+  ],
+  "markdown.marp.breaks": "on",
+  "markdown.marp.outlineExtension": true,
+  "markdown.marp.browserPath": ""
+}
