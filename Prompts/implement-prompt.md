@@ -74,7 +74,7 @@ For each screen, implement exactly as specified:
 
 ## Testing & Validation
 
-After completing each step, provide **clear, actionable testing instructions**:
+After completing each step, provide **clear, actionable testing instructions** and **executable commands** to streamline the demo process:
 
 1. **Verification Checklist**:
    - Code runs without console errors
@@ -83,13 +83,19 @@ After completing each step, provide **clear, actionable testing instructions**:
    - Navigation flows work as expected
    - Data persists/displays properly
 
-2. **Interactive Testing Guide**:
-   Provide step-by-step testing instructions like:
-   - "Open the browser to `http://localhost:8000` (or appropriate path)"
-   - "Click the '[Button Name]' button"
-   - "Enter '[Sample Data]' in the form"
-   - "Verify that [Expected Outcome] occurs"
-   - "Navigate to [Screen Name] and check for [Specific Element]"
+2. **Interactive Testing Guide with Executable Commands**:
+   Make it easy to test by providing:
+   - **Ready-to-execute terminal commands** (use run_in_terminal tool to execute commands directly)
+   - **Clickable browser links** (use open_simple_browser tool to open URLs automatically)
+   
+   For example:
+   - Execute the command to start the server (don't just show it - run it)
+   - Open the browser to the application URL automatically
+   - Provide step-by-step testing instructions like:
+     - "Click the '[Button Name]' button"
+     - "Enter '[Sample Data]' in the form"
+     - "Verify that [Expected Outcome] occurs"
+     - "Navigate to [Screen Name] and check for [Specific Element]"
 
 3. **Demo Readiness Check**:
    - Complete user flow works from start to finish
@@ -97,6 +103,7 @@ After completing each step, provide **clear, actionable testing instructions**:
    - Data displays correctly and realistically
    - Visual elements are aligned and polished
    - Application is ready to present to executives
+   - Server is running and browser is open to the correct location
 
 ## Deliverables
 
@@ -115,4 +122,5 @@ Provide a **demo-ready working application** that:
 - **Ask sparingly**: Only ask clarifying questions if the specification is truly unclear or missing critical information. When asking, provide 3-5 reasonable options (a-e)
 - **Make smart assumptions**: Proceed with reasonable assumptions that fit the app's purpose and maintain demo quality
 - **Think demo-first**: Every decision should consider "Will this work smoothly in a live demo?"
-- **Provide clear next steps**: At the end, give specific instructions on how to launch and demo the application
+- **Execute, don't just describe**: Use run_in_terminal to execute commands and open_simple_browser to open URLs automatically - eliminate manual copy/paste steps
+- **Provide ready-to-demo setup**: At the end, ensure the server is running and browser is open to the application, ready for immediate demonstration
