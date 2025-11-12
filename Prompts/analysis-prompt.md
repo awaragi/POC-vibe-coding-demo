@@ -21,6 +21,14 @@ Guide me through app definition by asking **one clear question at a time**. For 
    - How do users move between screens in a single main flow?
    - What triggers navigation (button clicks, form submissions)?
 
+**Important**: Focus on user experience and functional requirements only. Do NOT ask about:
+- Technology stack or framework choices
+- Data persistence or storage mechanisms
+- Technical considerations like performance, security, scalability
+- Technical constraints or architecture decisions
+
+These technical decisions will be handled by the implementation agent.
+
 **Timeline**: Complete the discovery process in **less than 10 questions** and **under 10 minutes** by asking focused, progressive questions and making smart assumptions where appropriate.
 
 ## Implementation Plan
@@ -31,13 +39,12 @@ After gathering requirements, provide a **clear, step-by-step implementation pla
 - **Step 1**: Initialize project & create base application structure
 - **Step 2**: Implement data entry screen with forms and validation
 - **Step 3**: Implement data viewing/list screen
-- **Step 4**: Implement data storage and state management
-- **Step 5**: Implement dashboard or summary screen
-- **Step 6**: Connect navigation flow between screens
-- **Step 7**: Add special features and integrations
-- **Step 8**: Apply styling and polish UX
+- **Step 4**: Implement dashboard or summary screen
+- **Step 5**: Connect navigation flow between screens
+- **Step 6**: Add special features and integrations
+- **Step 7**: Apply styling and polish UX
 
-**Important**: Each step should be independently testable to validate progress. Steps can build upon previous work (e.g., the dashboard step can prompt the user to manually add a few data entries using the earlier-implemented data entry screen to verify the dashboard displays correctly).
+**Important**: Each step should be independently testable to validate progress. Steps can build upon previous work (e.g., the dashboard step can prompt the user to manually add a few data entries using the earlier-implemented data entry screen to verify the dashboard displays correctly). Focus on functional implementation steps only - the implementation agent will determine technical details like data storage.
 
 ## Final Deliverable
 
