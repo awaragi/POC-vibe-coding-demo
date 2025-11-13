@@ -16,7 +16,7 @@ Before beginning implementation, ask the setup questions **one at a time** and o
 1. **Project Folder Name** (ask first): 
    - "What would you like to name the project folder?"
    - Offer 3-5 contextual suggestions based on the specification (e.g., 'crm-app', 'sales-demo', 'customer-portal', 'prototype-v1', or suggest a name based on the app's main purpose)
-   - All project files will be created in this subfolder
+   - All project files will be created in `/out/<project-name>` subfolder
    - Wait for response before asking the next question
 
 2. **Implementation Mode** (ask after folder name is confirmed):

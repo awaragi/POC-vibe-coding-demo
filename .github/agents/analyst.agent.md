@@ -6,7 +6,7 @@ tools: ['search', 'fetch', 'edit']
 handoffs:
   - label: Start Implementation
     agent: Senior-Developer
-    prompt: "Implement the application based on the specification document above. Follow the implementation plan step by step."
+    prompt: "Implement the application based on the specification document. Follow the implementation plan step by step."
     send: false
 ---
 
@@ -72,6 +72,6 @@ Conclude by creating a **detailed specification document** that includes:
 - **Simple visual style** guidance (clean, modern aesthetic)
 - **Implementation plan** broken into clear, testable steps
 
-**Automatically save this specification document to a file in the root folder** for use in a separate implementation session. You do not need to show it to me before saving.
+**Automatically save this specification document to a file in the `/out` folder** for use in a separate implementation session. You do not need to show it to me before saving.
 
 This document should provide enough detail that implementation in another chat session requires minimal clarification.
