@@ -6,6 +6,9 @@
 # Allow specific directories
 !.vscode/
 !.vscode/**
+!.github/
+!.github/agents/
+!.github/agents/**
 !Agents/
 !Agents/**
 !Cases/
