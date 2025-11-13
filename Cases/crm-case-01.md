@@ -1,3 +1,3 @@
 We need a CRM application for our sales teams to manage their opportunity pipeline more effectively. The app should allow sales reps to add new opportunities with key details like client name, deal value, and owner, then track these opportunities as they move through our standard sales stages: Lead, Qualified, Proposal, Negotiation, and finally Closed Won or Closed Lost. Sales reps need to easily view their entire pipeline at a glance and update opportunity stages as deals progress through the cycle. The goal is to give our sales teams better visibility into their pipeline and ensure nothing falls through the cracks.
 
-Use <my corporation> brand colors and styling.
+Ask about which brand colors and styling to use.
