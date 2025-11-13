@@ -29,6 +29,24 @@ This repository contains AI agent prompts and case studies for building demo-rea
 - **Step-by-Step Implementation**: Testable increments with clear validation
 - **Demo-Ready Output**: Polished applications suitable for executive presentations
 
+## AI Agent Prompts
+
+### Analysis Agent Prompt
+
+```
+Please use the instructions in analysis agent file as your agent behavior and methodology. 
+Follow those guidelines exactly to analyze and design the requirements specified in case file.
+```
+
+### Implementation Agent Prompt
+
+```
+You have two attached files: one contains the complete application specification with requirements
+and implementation plan, the other contains your role as an implementation agent with setup questions 
+and technical guidelines. Follow the agent instructions exactly to build the application described 
+in the specification.
+```
+
 ## Presentations
 
 To view the project presentations:
