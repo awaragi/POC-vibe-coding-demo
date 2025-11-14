@@ -115,10 +115,13 @@ After detailing each feature:
 1. Provide a **high-level description** of the feature (2-4 sentences summarizing what will be built)
 2. **Ask for confirmation**: "Does this feature description look good? Reply 'yes' to implement, or tell me what to adjust."
 3. **Wait for user response**:
-   - If user confirms ("yes", "looks good", "go ahead", etc.): Generate the detailed feature card and automatically hand off to Developer
+   - If user confirms ("yes", "looks good", "go ahead", etc.): 
+     a. Generate the detailed feature card
+     b. Save it to `/out/features/feature-[N]-[name].md`
+     c. **IMMEDIATELY trigger the "Implement This Feature" handoff** - do not wait, do not show a button, automatically pass control to Senior-Developer
    - If user requests changes: Adjust the feature based on feedback and ask for confirmation again
-4. Save the feature card to `/out/features/feature-[N]-[name].md` only after confirmation
-5. **Automatically invoke handoff** to Senior-Developer agent with `send: true`
+
+**CRITICAL**: The handoff button has `send: true` configured, which means after saving the feature card, you MUST immediately invoke the handoff. Do not present the handoff as an option - execute it automatically.
 
 ## After Implementation Returns
 

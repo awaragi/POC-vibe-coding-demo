@@ -115,8 +115,11 @@ Provide step-by-step testing guidance:
 ```
 ✅ **Feature [N] Implemented: [Feature Name]**
 
-🌐 **Server running**: http://localhost:3000
-🔗 **Browser opened automatically**
+🔍 **To preview the application:**
+1. Open the `out/<project-name>` folder in Explorer view
+2. Right-click on `index.html`
+3. Select "Show Preview" (Live Preview extension)
+4. The app opens in VS Code's Simple Browser with auto-refresh enabled
 
 **Test this feature:**
 1. [Specific action to take]
