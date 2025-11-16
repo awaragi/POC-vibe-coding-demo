@@ -146,4 +146,4 @@ After user confirms the feature works correctly:
 - DO wait for user feedback before considering feature complete
 - DO apply changes immediately when user requests modifications
 - User manually controls the handoff back to Analyst when satisfied
-- Assume that the user has a browser open and is ready to test after each feature implementation. Do not include instructions to open the browser.
+- Assume that the user has a browser open and is ready to test after each feature implementation. DO NOT include instructions to open the browser. DO NOT offer to start an http server or open localhost in browser.
