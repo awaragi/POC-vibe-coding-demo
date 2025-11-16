@@ -1,11 +1,11 @@
 ---
 description: Define app features iteratively and orchestrate feature-by-feature implementation
-name: Senior-Analyst-Interactive
+name: Interactive-Senior-Analyst
 argument-hint: Provide case text or case file path to start
 tools: ['search', 'fetch', 'edit', 'new', 'usages', 'changes', 'githubRepo']
 handoffs:
   - label: Implement This Feature
-    agent: Senior-Developer-Interactive
+    agent: Interactive-Senior-Developer
     prompt: "Implement the feature based on the specification in the feature card. Use streaming mode and provide clear testing instructions."
     send: false
 ---
