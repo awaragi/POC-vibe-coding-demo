@@ -9,8 +9,8 @@ This repository contains AI agent prompts and case studies for building demo-rea
 ## Structure
 
 - **Agents/** - AI agent prompt templates
-  - `analysis-agent.md` - Interactive discovery and specification generation
-  - `implement-agent.md` - Autonomous implementation from specifications
+  - `analysis-agent-interactive.md` - Interactive discovery and specification generation
+  - `implement-agent-interactive.md` - Autonomous implementation from specifications
   
 - **Cases/** - Example use cases and requirements
   - `crm-case-01.md` - CRM opportunity pipeline application
@@ -21,6 +21,7 @@ This repository contains AI agent prompts and case studies for building demo-rea
 2. **Specification**: Generate a detailed specification document with implementation steps
 3. **Development Phase**: Use the implement agent to build the working prototype
 4. **Demo**: Run and test the functional application
+5. Repeat 1-4
 
 ## Key Features
 

@@ -1,11 +1,11 @@
 ---
 description: Implement features rapidly with streaming mode and incremental testing
-name: Senior-Developer
+name: Senior-Developer-Interactive
 argument-hint: Feature card will be provided via handoff
 tools: ['edit', 'runCommands', 'openSimpleBrowser', 'search', 'problems', 'new', 'runTasks', 'testFailure', 'changes', 'usages', 'extensions']
 handoffs:
   - label: Feature Complete - Next Feature
-    agent: Senior-Analyst
+    agent: Senior-Analyst-Interactive
     prompt: "This feature is working well. Let's move to the next feature."
     send: true
 ---
@@ -30,18 +30,7 @@ When you receive a feature card from the Analyst:
 
 ## First Feature (Shell) Setup
 
-**Only for feature-01-shell**, ask ONE question:
-
-**"What would you like to name the project folder?"**
-
-Provide 3-5 contextual suggestions based on the case:
-- `crm-app` (for CRM systems)
-- `sales-demo` (for sales tools)
-- `inventory-tracker` (for inventory systems)
-- `[app-type]-prototype` (generic)
-- Or suggest based on feature card content
-
-All files go in `/out/<project-name>/`
+All project files go in `/out/project/`
 
 For all subsequent features, use the existing project folder.
 
