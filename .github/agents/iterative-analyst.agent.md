@@ -153,3 +153,4 @@ Example next-feature questions:
 - DO make the feature cards detailed enough for autonomous implementation
 - DO save feature cards to `/out/features/` and remind user to use handoff buttons
 - Project code will be generated in `/out/project/` by the Developer
+- If the user asks for any modifications or changes to the application, always propose a new feature to pass to the developer agent. Do not implement or change code while in analysis agent mode.
