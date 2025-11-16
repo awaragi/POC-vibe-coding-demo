@@ -20,8 +20,35 @@ This repository contains AI agent prompts and case studies for building demo-rea
 1. **Discovery Phase**: Use the analysis agent to interactively define app requirements, screens, and user flows
 2. **Specification**: Generate a detailed specification document with implementation steps
 3. **Development Phase**: Use the implement agent to build the working prototype
-4. **Demo**: Run and test the functional application
+4. **Preview & Test**: View the application in your browser (see preview instructions below)
 5. Repeat 1-4
+
+## Previewing Generated Applications
+
+Generated applications are created in `/out/project/`. To preview them, use any of these methods:
+
+### Option 1: Live Preview Extension (Recommended)
+1. Install the "Live Preview" extension in VS Code
+2. Right-click on `/out/project/index.html`
+3. Select "Show Preview"
+4. Changes auto-refresh as you develop
+
+### Option 2: Python HTTP Server
+```bash
+cd /out/project
+python3 -m SimpleHTTPServer 8000
+```
+Then open http://localhost:8000 in your browser
+
+### Option 3: npx HTTP Server
+```bash
+cd /out/project
+npx @compodoc/live-server -p 8000
+```
+Then open http://localhost:8000 in your browser
+
+### Option 4: Direct File Opening
+Simply open `/out/project/index.html` directly in Chrome or your preferred browser. Note that some features requiring CORS may not work with the `file://` protocol.
 
 ## Key Features
 
