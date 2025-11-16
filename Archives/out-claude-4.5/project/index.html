@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI Sales Pipeline CRM</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="branding">
+                    <h1 class="logo">CGI CRM</h1>
+                    <span class="app-title">Sales Pipeline CRM</span>
+                </div>
+                <div class="header-right">
+                    <nav class="nav">
+                        <a href="#pipeline" class="nav-link active">Pipeline</a>
+                    </nav>
+                    <button id="add-opportunity-btn" class="btn btn-primary btn-header">+ Add Opportunity</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Pipeline View with Tabs -->
+            <div id="pipeline-view" class="content-section">
+                <!-- Tab Navigation -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+                    <button class="tab-btn" data-tab="board">Board View</button>
+                    <button class="tab-btn" data-tab="list">List View</button>
+                </div>
+
+                <!-- Dashboard Tab Content -->
+                <div id="dashboard-tab" class="tab-content active">
+                    <!-- Summary Cards -->
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="card-label">Total Pipeline Value</div>
+                            <div class="card-value" id="total-pipeline-value">$0</div>
+                            <div class="card-subtitle">Open opportunities</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="card-label">Total Opportunities</div>
+                            <div class="card-value" id="total-opportunities">0</div>
+                            <div class="card-subtitle">All stages</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="card-label">Win Rate</div>
+                            <div class="card-value" id="win-rate">0%</div>
+                            <div class="card-subtitle">Closed deals</div>
+                        </div>
+                    </div>
+
+                    <!-- Stage Breakdown -->
+                    <div class="stage-breakdown">
+                        <h3>Pipeline by Stage</h3>
+                        <div id="stage-breakdown-content"></div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div id="recent-activity-list"></div>
+                    </div>
+                </div>
+
+                <!-- Board View Tab Content -->
+                <div id="board-tab" class="tab-content">
+                    <div class="kanban-board" id="kanban-board">
+                        <!-- Columns will be generated dynamically -->
+                    </div>
+                </div>
+
+                <!-- List View Tab Content -->
+                <div id="list-tab" class="tab-content">
+                    <!-- Filter/Search Bar -->
+                    <div class="list-controls">
+                        <input type="text" id="search-input" placeholder="Search by client name or owner..." class="search-input">
+                        <select id="stage-filter" class="stage-filter">
+                            <option value="">All Stages</option>
+                            <option value="Lead">Lead</option>
+                            <option value="Qualified">Qualified</option>
+                            <option value="Proposal">Proposal</option>
+                            <option value="Negotiation">Negotiation</option>
+                            <option value="Closed Won">Closed Won</option>
+                            <option value="Closed Lost">Closed Lost</option>
+                        </select>
+                        <button id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="table-container">
+                        <table id="opportunities-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="clientName">Client Name <span class="sort-indicator"></span></th>
+                                    <th data-sort="dealValue">Deal Value <span class="sort-indicator"></span></th>
+                                    <th data-sort="stage">Stage <span class="sort-indicator"></span></th>
+                                    <th data-sort="owner">Owner <span class="sort-indicator"></span></th>
+                                    <th data-sort="createdAt">Created <span class="sort-indicator"></span></th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Rows will be generated dynamically -->
+                            </tbody>
+                        </table>
+                        <div id="empty-state" class="empty-state" style="display: none;">
+                            <p>No opportunities found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opportunities Form Section -->
+            <div id="add-opportunity-view" class="content-section" style="display: none;">
+                <!-- Success Message -->
+                <div id="success-message" class="success-banner" style="display: none;">
+                    ✓ Opportunity added successfully!
+                </div>
+
+                <!-- Form Container -->
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Add New Opportunity</h2>
+                    </div>
+                    
+                    <form id="opportunity-form" novalidate>
+                        <!-- Client Name -->
+                        <div class="form-group">
+                            <label for="clientName">Client Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="clientName" 
+                                name="clientName"
+                                placeholder="Enter client or company name"
+                                maxlength="100"
+                                required
+                            >
+                            <div class="error-message" id="clientName-error"></div>
+                        </div>
+
+                        <!-- Deal Value -->
+                        <div class="form-group">
+                            <label for="dealValue">Deal Value ($) <span class="required">*</span></label>
+                            <input 
+                                type="number" 
+                                id="dealValue" 
+                                name="dealValue"
+                                placeholder="0.00"
+                                step="0.01"
+                                min="0"
+                                required
+                            >
+                            <div class="error-message" id="dealValue-error"></div>
+                        </div>
+
+                        <!-- Sales Stage -->
+                        <div class="form-group">
+                            <label for="stage">Current Stage <span class="required">*</span></label>
+                            <select id="stage" name="stage" required>
+                                <option value="Lead">Lead</option>
+                                <option value="Qualified">Qualified</option>
+                                <option value="Proposal">Proposal</option>
+                                <option value="Negotiation">Negotiation</option>
+                                <option value="Closed Won">Closed Won</option>
+                                <option value="Closed Lost">Closed Lost</option>
+                            </select>
+                            <div class="error-message" id="stage-error"></div>
+                        </div>
+
+                        <!-- Owner -->
+                        <div class="form-group">
+                            <label for="owner">Opportunity Owner <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="owner" 
+                                name="owner"
+                                placeholder="Enter sales rep name"
+                                maxlength="50"
+                                required
+                            >
+                            <div class="error-message" id="owner-error"></div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Add Opportunity</button>
+                            <button type="button" class="btn btn-secondary" id="clear-form">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CGI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Opportunity</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <form id="edit-form" novalidate>
+                <input type="hidden" id="edit-id">
+                
+                <div class="form-group">
+                    <label for="edit-clientName">Client Name <span class="required">*</span></label>
+                    <input type="text" id="edit-clientName" name="clientName" required maxlength="100">
+                    <div class="error-message" id="edit-clientName-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-dealValue">Deal Value ($) <span class="required">*</span></label>
+                    <input type="number" id="edit-dealValue" name="dealValue" required step="0.01" min="0">
+                    <div class="error-message" id="edit-dealValue-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-stage">Current Stage <span class="required">*</span></label>
+                    <select id="edit-stage" name="stage" required>
+                        <option value="Lead">Lead</option>
+                        <option value="Qualified">Qualified</option>
+                        <option value="Proposal">Proposal</option>
+                        <option value="Negotiation">Negotiation</option>
+                        <option value="Closed Won">Closed Won</option>
+                        <option value="Closed Lost">Closed Lost</option>
+                    </select>
+                    <div class="error-message" id="edit-stage-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-owner">Opportunity Owner <span class="required">*</span></label>
+                    <input type="text" id="edit-owner" name="owner" required maxlength="50">
+                    <div class="error-message" id="edit-owner-error"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal" style="display: none;">
+        <div class="modal-content modal-small">
+            <h3>Delete Opportunity</h3>
+            <p id="delete-message">Are you sure you want to delete this opportunity?</p>
+            <div class="form-actions">
+                <button id="confirm-delete" class="btn btn-primary">Delete</button>
+                <button id="cancel-delete" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

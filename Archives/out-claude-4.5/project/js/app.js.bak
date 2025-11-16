@@ -1,0 +1,316 @@
+/**
+ * CGI Sales Pipeline CRM
+ * Main Application JavaScript
+ */
+
+// Initialize application when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('CGI Sales Pipeline CRM initialized');
+    
+    // Setup navigation
+    setupNavigation();
+    
+    // Setup opportunity form
+    setupOpportunityForm();
+    
+    // Log successful initialization
+    console.log('✓ Application shell loaded successfully');
+});
+
+/**
+ * Setup navigation click handlers
+ */
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            e.target.classList.add('active');
+            
+            // Show appropriate content section
+            const href = e.target.getAttribute('href');
+            showSection(href);
+            
+            console.log(`Navigated to: ${e.target.textContent}`);
+        });
+    });
+}
+
+/**
+ * Show the appropriate content section
+ */
+function showSection(section) {
+    const pipelineView = document.getElementById('pipeline-view');
+    const opportunitiesView = document.getElementById('opportunities-view');
+    const addOpportunityView = document.getElementById('add-opportunity-view');
+    
+    // Hide all sections
+    pipelineView.style.display = 'none';
+    opportunitiesView.style.display = 'none';
+    addOpportunityView.style.display = 'none';
+    
+    // Show appropriate section
+    if (section === '#pipeline') {
+        pipelineView.style.display = 'block';
+    } else if (section === '#opportunities') {
+        opportunitiesView.style.display = 'block';
+    } else if (section === '#add-opportunity') {
+        addOpportunityView.style.display = 'block';
+    }
+}
+
+/**
+ * Setup opportunity form handlers
+ */
+function setupOpportunityForm() {
+    const form = document.getElementById('opportunity-form');
+    const clearBtn = document.getElementById('clear-form');
+    const addOpportunityBtn = document.getElementById('add-opportunity-btn');
+    
+    // Add Opportunity button in header
+    addOpportunityBtn.addEventListener('click', () => {
+        // Remove active class from nav links
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        // Show add opportunity form
+        showSection('#add-opportunity');
+    });
+    
+    // Form submission
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleFormSubmit();
+    });
+    
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+        clearForm();
+    });
+    
+    // Field validation on blur
+    const fields = ['clientName', 'dealValue', 'owner'];
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        field.addEventListener('blur', () => {
+            validateField(fieldId);
+        });
+    });
+}
+
+/**
+ * Handle form submission
+ */
+function handleFormSubmit() {
+    // Clear previous errors
+    clearErrors();
+    
+    // Validate all fields
+    const isValid = validateAllFields();
+    
+    if (!isValid) {
+        // Focus on first invalid field
+        const firstError = document.querySelector('.error');
+        if (firstError) {
+            firstError.focus();
+        }
+        return;
+    }
+    
+    // Get form data
+    const formData = getFormData();
+    
+    // Create opportunity object
+    const opportunity = {
+        id: generateId(),
+        clientName: formData.clientName,
+        dealValue: parseFloat(formData.dealValue),
+        stage: formData.stage,
+        owner: formData.owner,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+    
+    // Save to localStorage
+    saveOpportunity(opportunity);
+    
+    // Show success message
+    showSuccessMessage();
+    
+    // Clear form
+    clearForm();
+    
+    // Log to console
+    console.log('✓ Opportunity saved:', opportunity);
+}
+
+/**
+ * Validate all form fields
+ */
+function validateAllFields() {
+    const clientNameValid = validateField('clientName');
+    const dealValueValid = validateField('dealValue');
+    const ownerValid = validateField('owner');
+    
+    return clientNameValid && dealValueValid && ownerValid;
+}
+
+/**
+ * Validate individual field
+ */
+function validateField(fieldId) {
+    const field = document.getElementById(fieldId);
+    const value = field.value.trim();
+    const errorElement = document.getElementById(`${fieldId}-error`);
+    
+    // Clear previous error
+    field.classList.remove('error');
+    errorElement.textContent = '';
+    
+    // Validation rules
+    let isValid = true;
+    let errorMessage = '';
+    
+    if (fieldId === 'clientName') {
+        if (!value) {
+            isValid = false;
+            errorMessage = '❌ Client name is required';
+        } else if (value.length < 2) {
+            isValid = false;
+            errorMessage = '❌ Client name must be at least 2 characters';
+        } else if (value.length > 100) {
+            isValid = false;
+            errorMessage = '❌ Client name must be less than 100 characters';
+        }
+    }
+    
+    if (fieldId === 'dealValue') {
+        if (!value) {
+            isValid = false;
+            errorMessage = '❌ Deal value is required';
+        } else if (parseFloat(value) <= 0) {
+            isValid = false;
+            errorMessage = '❌ Deal value must be greater than 0';
+        }
+    }
+    
+    if (fieldId === 'owner') {
+        if (!value) {
+            isValid = false;
+            errorMessage = '❌ Opportunity owner is required';
+        } else if (value.length < 2) {
+            isValid = false;
+            errorMessage = '❌ Owner name must be at least 2 characters';
+        } else if (value.length > 50) {
+            isValid = false;
+            errorMessage = '❌ Owner name must be less than 50 characters';
+        }
+    }
+    
+    // Show error if invalid
+    if (!isValid) {
+        field.classList.add('error');
+        errorElement.textContent = errorMessage;
+    }
+    
+    return isValid;
+}
+
+/**
+ * Get form data
+ */
+function getFormData() {
+    return {
+        clientName: document.getElementById('clientName').value.trim(),
+        dealValue: document.getElementById('dealValue').value.trim(),
+        stage: document.getElementById('stage').value,
+        owner: document.getElementById('owner').value.trim()
+    };
+}
+
+/**
+ * Save opportunity to localStorage
+ */
+function saveOpportunity(opportunity) {
+    let opportunities = Storage.get('crm_opportunities') || [];
+    opportunities.push(opportunity);
+    Storage.set('crm_opportunities', opportunities);
+}
+
+/**
+ * Show success message
+ */
+function showSuccessMessage() {
+    const successBanner = document.getElementById('success-message');
+    successBanner.style.display = 'block';
+    
+    // Auto-dismiss after 3 seconds
+    setTimeout(() => {
+        successBanner.style.display = 'none';
+    }, 3000);
+}
+
+/**
+ * Clear form fields
+ */
+function clearForm() {
+    document.getElementById('opportunity-form').reset();
+    clearErrors();
+}
+
+/**
+ * Clear all error messages
+ */
+function clearErrors() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(msg => msg.textContent = '');
+    
+    const errorFields = document.querySelectorAll('.error');
+    errorFields.forEach(field => field.classList.remove('error'));
+}
+
+/**
+ * Generate unique ID
+ */
+function generateId() {
+    return `opp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+}
+
+/**
+ * Utility function for localStorage operations
+ */
+const Storage = {
+    get: (key) => {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : null;
+        } catch (error) {
+            console.error('Error reading from localStorage:', error);
+            return null;
+        }
+    },
+    
+    set: (key, value) => {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        } catch (error) {
+            console.error('Error writing to localStorage:', error);
+            return false;
+        }
+    },
+    
+    remove: (key) => {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            console.error('Error removing from localStorage:', error);
+            return false;
+        }
+    }
+};
