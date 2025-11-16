@@ -9,8 +9,6 @@
 !.github/
 !.github/agents/
 !.github/agents/**
-!Agents/
-!Agents/**
 !Cases/
 !Cases/**
 !Presentations/
