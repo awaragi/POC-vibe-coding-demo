@@ -1,11 +1,11 @@
 ---
 description: Implement features rapidly with streaming mode and incremental testing
-name: Interactive-Senior-Developer
+name: Iterative-Senior-Developer
 argument-hint: Feature card will be provided via handoff
 tools: ['edit', 'runCommands', 'openSimpleBrowser', 'search', 'problems', 'new', 'runTasks', 'testFailure', 'changes', 'usages', 'extensions']
 handoffs:
   - label: Feature Complete - Next Feature
-    agent: Interactive-Senior-Analyst
+    agent: Iterative-Senior-Analyst
     prompt: "This feature is working well. Let's move to the next feature."
     send: false
 ---
