@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGI Opportunity Pipeline</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-nav">
+      <div class="brand-mark" aria-label="CGI logo">CGI</div>
+      <h1>CGI Opportunity Pipeline</h1>
+      <div class="user-badge">
+        <span class="user-avatar">JS</span>
+        <div>
+          <p class="user-name">Jordan Sales</p>
+          <p class="user-role">Sales Director</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="stage-sidebar" aria-label="Sales stages">
+        <div class="sidebar-header">
+          <p class="eyebrow">Sales Flow</p>
+          <h2>Pipeline Stages</h2>
+          <p class="supporting">Track every deal from first touch to closed outcomes.</p>
+        </div>
+        <ul class="stage-list" id="stageList"></ul>
+        <a class="sidebar-cta" href="#">View Playbook →</a>
+      </aside>
+
+      <section class="pipeline-area" aria-live="polite">
+        <div class="pipeline-toolbar">
+          <div>
+            <p class="eyebrow">Overview</p>
+            <h2>Active Opportunities</h2>
+          </div>
+          <button class="primary-btn" type="button" data-action="open-form">+ New Opportunity</button>
+        </div>
+        <div class="pipeline-columns" id="pipelineColumns"></div>
+      </section>
+    </main>
+
+    <div class="panel-overlay" data-overlay hidden></div>
+
+    <aside class="opportunity-panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true" data-panel>
+      <form id="opportunityForm" novalidate>
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Create Deal</p>
+            <h2 id="panelTitle">New Opportunity</h2>
+            <p class="supporting">Capture the essentials so your pipeline stays inspection-ready.</p>
+          </div>
+          <button type="button" class="panel-close" aria-label="Close form">&times;</button>
+        </div>
+
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Client Name *</span>
+            <input type="text" id="clientName" name="clientName" autocomplete="organization" />
+            <span class="field-error" data-error="clientName"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Opportunity Title *</span>
+            <input type="text" id="opportunityTitle" name="opportunityTitle" autocomplete="off" />
+            <span class="field-error" data-error="opportunityTitle"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Deal Owner *</span>
+            <input type="text" id="dealOwner" name="dealOwner" list="ownerSuggestions" autocomplete="name" />
+            <span class="field-error" data-error="dealOwner"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Stage *</span>
+            <select id="stageSelect" name="stage"></select>
+            <span class="field-error" data-error="stage"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Deal Value (USD) *</span>
+            <input type="number" id="dealValue" name="dealValue" min="0" step="1000" />
+            <span class="field-error" data-error="dealValue"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Expected Close Date *</span>
+            <input type="date" id="closeDate" name="closeDate" />
+            <span class="field-error" data-error="closeDate"></span>
+          </label>
+
+          <label class="form-field" for="probability">
+            <span>Win Probability *</span>
+            <div class="slider-row">
+              <input type="range" id="probability" name="probability" min="0" max="100" value="50" />
+              <span id="probabilityValue">50%</span>
+            </div>
+            <span class="field-error" data-error="probability"></span>
+          </label>
+
+          <label class="form-field form-field--full">
+            <span>Notes</span>
+            <textarea id="notes" name="notes" rows="4" placeholder="Key context, blockers, next steps..."></textarea>
+          </label>
+        </div>
+
+        <datalist id="ownerSuggestions">
+          <option value="Jordan Sales"></option>
+          <option value="Priya Gupta"></option>
+          <option value="Lee Carter"></option>
+          <option value="Amelia Vega"></option>
+          <option value="Ivan Flores"></option>
+        </datalist>
+
+        <div class="panel-actions">
+          <button type="submit" class="primary-btn" data-action="save" disabled>Save Opportunity</button>
+          <button type="button" class="ghost-btn" data-action="cancel">Cancel</button>
+        </div>
+      </form>
+    </aside>
+
+    <aside class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle" aria-hidden="true" data-detail>
+      <div class="detail-header">
+        <div>
+          <p class="eyebrow eyebrow--light">Opportunity Insight</p>
+          <p class="detail-client" data-detail-client>Client Name</p>
+          <h2 id="detailTitle" data-detail-title>Opportunity Title</h2>
+        </div>
+        <div class="detail-header-actions">
+          <span class="stage-pill" data-detail-stage>Stage</span>
+          <button type="button" class="panel-close panel-close--inverse" aria-label="Close details" data-detail-dismiss>&times;</button>
+        </div>
+      </div>
+
+      <section class="detail-kpis">
+        <article class="kpi-card">
+          <p>Deal Value</p>
+          <strong data-detail-value>$0</strong>
+        </article>
+        <article class="kpi-card">
+          <p>Probability</p>
+          <strong data-detail-probability>0%</strong>
+        </article>
+        <article class="kpi-card">
+          <p>Close Date</p>
+          <strong data-detail-close-date>—</strong>
+        </article>
+        <article class="kpi-card">
+          <p>Owner</p>
+          <strong data-detail-owner>—</strong>
+        </article>
+      </section>
+
+      <form id="detailForm" class="detail-form" novalidate>
+        <div class="form-grid form-grid--detail">
+          <label class="form-field">
+            <span>Stage *</span>
+            <select id="detailStage" name="stage"></select>
+            <span class="field-error" data-detail-error="stage"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Deal Owner *</span>
+            <input type="text" id="detailOwner" name="owner" list="ownerSuggestions" autocomplete="name" />
+            <span class="field-error" data-detail-error="owner"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Deal Value (USD) *</span>
+            <input type="number" id="detailValue" name="value" min="0" step="1000" />
+            <span class="field-error" data-detail-error="value"></span>
+          </label>
+
+          <label class="form-field">
+            <span>Expected Close Date *</span>
+            <input type="date" id="detailCloseDate" name="closeDate" />
+            <span class="field-error" data-detail-error="closeDate"></span>
+          </label>
+
+          <label class="form-field form-field--full" for="detailProbability">
+            <span>Win Probability *</span>
+            <div class="slider-row">
+              <input type="range" id="detailProbability" name="probability" min="0" max="100" value="50" />
+              <span id="detailProbabilityValue">50%</span>
+            </div>
+            <span class="field-error" data-detail-error="probability"></span>
+          </label>
+
+          <label class="form-field form-field--full">
+            <span>Notes</span>
+            <textarea id="detailNotes" name="notes" rows="4" placeholder="Context, blockers, next actions..."></textarea>
+          </label>
+        </div>
+
+        <div class="panel-actions detail-actions">
+          <button type="submit" class="primary-btn" data-detail-save disabled>Update Deal</button>
+          <button type="button" class="ghost-btn ghost-btn--inverse" data-detail-won>Mark Closed Won</button>
+          <button type="button" class="ghost-btn ghost-btn--inverse" data-detail-lost>Mark Closed Lost</button>
+        </div>
+      </form>
+
+      <section class="detail-timeline">
+        <div class="timeline-header">
+          <h3>Recent Movements</h3>
+          <p>Auto-generated milestones for quick context.</p>
+        </div>
+        <ul class="timeline-list" id="detailTimeline"></ul>
+      </section>
+    </aside>
+
+    <div class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+    <footer class="app-footer">
+      <p>Need help? Visit the <a href="#">Sales Enablement Hub</a> or reach out to <a href="mailto:support@cgi.com">support@cgi.com</a>.</p>
+      <p>© 2025 CGI Inc.</p>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
