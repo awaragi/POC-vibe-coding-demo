@@ -4,53 +4,62 @@ A demonstration framework for rapid app prototyping using AI agents. This projec
 
 ## Overview
 
-This repository contains AI agent prompts and case studies for building demo-ready applications in minutes rather than days. The workflow separates design discovery from implementation, enabling efficient collaboration between product thinking and development execution.
+This repository contains GitHub Copilot custom agent configurations and case studies for building demo-ready applications in minutes rather than days. Two distinct workflows are provided: an **iterative** approach for feature-by-feature development with fast feedback, and a **linear** approach for complete specification-driven development.
 
 ## Structure
 
-- **.github/agents/** - AI agent prompt templates
+- **.github/agents/** - GitHub Copilot custom agent configurations
   - **Iterative Workflow Agents**
-    - `iterative-analyst.agent.md` - Feature-by-feature discovery and orchestration
-    - `iterative-developer.agent.md` - Streaming feature implementation with rapid testing
+    - `iterative-analyst.agent.md` - Feature-by-feature design and orchestration
+    - `iterative-developer.agent.md` - Streaming feature implementation with live preview
     - `iterative-code-review.agent.md` - Comprehensive code review with quality and security checks
   - **Linear Workflow Agents**
-    - `linear-analyst.agent.md` - Complete app specification through interactive discovery
-    - `linear-developer.agent.md` - Full implementation from specification document
+    - `linear-analyst.agent.md` - Interactive discovery and complete specification generation
+    - `linear-developer.agent.md` - Autonomous implementation from specifications
   
 - **Cases/** - Example use cases and requirements
   - `crm-case-01.md` - CRM opportunity pipeline application
-
-- **Presentations/** - Project presentation materials
-  - `vibe-coding-agent-demo.md` - Marp presentation on AI-assisted development best practices
+  
+- **Presentations/** - Project presentations and demos
+  - `vibe-coding-agent-demo.md` - Introduction to vibe coding methodology
+  - `llm-crm-evaluation.md` - LLM benchmark for CRM code generation
+  - `high-density.css` - High-density theme for Marp presentations
+  
+- **Archives/** - Example implementations from different LLMs
+  - `out-claude-4.5/` - Claude 4.5 generated CRM application
+  - `out-gemini-2.5/` - Gemini 2.5 generated CRM application
+  - `out-gpt-5.1-codex/` - GPT 5.1 Codex generated CRM application
 
 ## Workflows
 
-This framework supports two complementary workflows:
-
 ### Iterative Workflow (Feature-by-Feature)
 
-Build applications incrementally with fast visual feedback:
+The iterative workflow builds applications incrementally with fast visual feedback:
 
-1. **Feature Discovery**: Iterative Analyst asks about the next feature and creates a feature card
-2. **Implementation**: Iterative Developer implements the feature and provides testing instructions
-3. **User Testing**: Test the feature in your browser and provide feedback
-4. **Quality Check** (Optional): Use handoff buttons to choose:
+1. **Initial Setup**: Use the Iterative Analyst agent with a case file (e.g., `Cases/crm-case-01.md`)
+2. **Foundation**: Analyst generates shell/foundation feature card in `/out/features/`
+3. **Hand-off**: Manually hand off to Iterative Developer agent for implementation
+4. **Implementation**: Developer implements in `/out/project/` with live preview
+5. **Testing**: Developer provides testing instructions and waits for feedback
+6. **Quality Check** (Optional): Use handoff buttons to choose:
    - **Code Review**: Iterative Code Reviewer examines code for quality, security, and best practices
    - **Next Feature**: Skip review and proceed directly to the next feature for rapid iteration
-5. **Iterate**: Repeat steps 1-4 until the application is complete
+7. **Next Feature**: Hand back to Analyst, define next feature, repeat steps 3-6
+8. **Iterate**: Continue until application is complete
 
-**Best for**: Rapid prototyping with flexibility to balance speed and quality at each step.
+**Best for**: Rapid prototyping with continuous feedback, visual validation, and optional quality assurance
 
 ### Linear Workflow (Complete Specification)
 
-Define everything upfront, then implement:
+The linear workflow creates a complete specification before implementation:
 
-1. **Discovery Phase**: Linear Analyst guides interactive discovery of all app requirements
-2. **Specification**: Generate a complete specification document with implementation plan
-3. **Development Phase**: Linear Developer builds the entire application from the spec
-4. **Preview & Test**: View and test the completed application in your browser
+1. **Discovery Phase**: Use the Linear Analyst agent to interactively define app requirements
+2. **Specification**: Analyst generates complete specification with implementation plan
+3. **Hand-off**: Manually hand off to Linear Developer agent with specification
+4. **Development**: Developer builds complete prototype (autonomous or phased mode)
+5. **Preview & Test**: View and test the application in your browser
 
-**Best for**: Well-defined projects where requirements are clear from the start.
+**Best for**: Well-defined projects where complete planning upfront is beneficial
 
 ## Previewing Generated Applications
 
@@ -81,43 +90,64 @@ Simply open `/out/project/index.html` directly in Chrome or your preferred brows
 
 ## Key Features
 
+- **Dual Workflows**: Choose between iterative (feature-by-feature) or linear (complete spec) approaches
 - **Rapid Prototyping**: Go from concept to working demo in under 30 minutes
-- **Flexible Workflows**: Choose between iterative feature-by-feature or linear complete-spec approaches
+- **GitHub Copilot Integration**: Custom agents optimized for AI-assisted development
 - **Quality Assurance**: Built-in code review agent with comprehensive security and quality checks
 - **Structured Discovery**: Focused questions that define requirements efficiently
-- **Step-by-Step Implementation**: Testable increments with clear validation
+- **Streaming Implementation**: Real-time code generation with live preview
+- **Zero Build Time**: Pure vanilla HTML/CSS/JavaScript for instant feedback
 - **Demo-Ready Output**: Polished applications suitable for executive presentations
 
-## Agent Descriptions
+## Using the Agents
 
-### Iterative Workflow Agents
+The custom agents are configured in `.github/agents/` and are automatically available in GitHub Copilot for VS Code or GitHub.com when working in this repository.
 
-**Iterative Analyst** - Orchestrates feature-by-feature development:
-- Creates focused feature cards stored in `/out/features/`
-- Asks about next feature after each implementation
-- Maintains incremental progress with fast feedback loops
+### Iterative Agents
 
-**Iterative Developer** - Implements features with streaming mode:
-- Reads feature cards and implements in `/out/project/`
-- Provides clear testing instructions after each feature
-- Offers handoff options: code review or next feature
+**Iterative Analyst** - Start with a case file or description:
+- Provide: `Cases/crm-case-01.md` or describe your app idea
+- Agent asks about design preferences and generates feature cards
+- Use handoff button to send features to Developer
+
+**Iterative Developer** - Receives feature cards via handoff:
+- Implements features with streaming output
+- Auto-starts servers and opens browser preview
+- Provides testing instructions and waits for feedback
+- Use handoff buttons for next steps: code review or next feature
 
 **Iterative Code Reviewer** - Ensures code quality and security:
 - Comprehensive 6-part review: functionality & correctness, code quality & maintainability, security, performance, user experience, and best practices
 - Provides severity-based feedback (Critical 🔴, Important 🟡, Suggestions 🟢)
 - Balances thoroughness with rapid prototyping needs
+- Use handoff button to return to Developer for fixes or Analyst for next feature
 
-### Linear Workflow Agents
+### Linear Agents
 
-**Linear Analyst** - Complete upfront specification:
-- Interactive discovery process (< 10 questions, < 10 minutes)
-- Generates detailed specification document in `/out/`
-- Defines all screens, data, and implementation steps
+**Linear Analyst** - Collaborative specification creation:
+- Answer focused questions about app requirements
+- Agent generates complete specification document
+- Use handoff button to send spec to Developer
 
-**Linear Developer** - Full implementation from spec:
-- Builds complete application in autonomous or phased mode
-- Uses vanilla HTML/CSS/JavaScript for zero build time
-- Provides executable commands and automated testing
+**Linear Developer** - Autonomous or phased implementation:
+- Receives specification via handoff
+- Choose autonomous (full implementation) or phased (step-by-step) mode
+- Builds complete prototype in `/out/project/`
+
+## Example Implementations
+
+The **Archives/** directory contains complete CRM application implementations generated by different LLMs, demonstrating the capabilities of various AI models:
+
+- **Claude 4.5**: Fast, conversational generation with clean, modular code
+- **Gemini 2.5**: Multi-feature handling with comprehensive implementations
+- **GPT 5.1 Codex**: Advanced code generation with modern UI patterns
+
+Each archive includes:
+- Complete project files (`index.html`, `css/styles.css`, `js/app.js`)
+- Feature cards documenting the development progression
+- Working CRM opportunity pipeline application
+
+These serve as reference implementations and benchmarks for comparing different LLM capabilities in vibe coding workflows.
 
 ## Presentations
 
@@ -128,6 +158,10 @@ PORT=8880 npx @marp-team/marp-cli -s Presentations
 ```
 
 Then open [http://localhost:8880](http://localhost:8880) in your browser.
+
+Available presentations:
+- **vibe-coding-agent-demo.md**: Introduction to vibe coding methodology and best practices
+- **llm-crm-evaluation.md**: Comprehensive benchmark comparing LLMs for CRM code generation
 
 ## License
 
