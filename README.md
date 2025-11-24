@@ -9,10 +9,13 @@ This repository contains GitHub Copilot custom agent configurations and case stu
 ## Structure
 
 - **.github/agents/** - GitHub Copilot custom agent configurations
-  - `iterative-analyst.agent.md` - Feature-by-feature design and orchestration
-  - `iterative-developer.agent.md` - Streaming feature implementation with live preview
-  - `linear-analyst.agent.md` - Interactive discovery and complete specification generation
-  - `linear-developer.agent.md` - Autonomous implementation from specifications
+  - **Iterative Workflow Agents**
+    - `iterative-analyst.agent.md` - Feature-by-feature design and orchestration
+    - `iterative-developer.agent.md` - Streaming feature implementation with live preview
+    - `iterative-code-review.agent.md` - Comprehensive code review with quality and security checks
+  - **Linear Workflow Agents**
+    - `linear-analyst.agent.md` - Interactive discovery and complete specification generation
+    - `linear-developer.agent.md` - Autonomous implementation from specification
   
 - **Cases/** - Example use cases and requirements
   - `crm-case-01.md` - CRM opportunity pipeline application
@@ -38,10 +41,13 @@ The iterative workflow builds applications incrementally with fast visual feedba
 3. **Hand-off**: Manually hand off to Iterative Developer agent for implementation
 4. **Implementation**: Developer implements in `/out/project/` with live preview
 5. **Testing**: Developer provides testing instructions and waits for feedback
-6. **Next Feature**: Hand back to Analyst, define next feature, repeat steps 3-5
-7. **Iterate**: Continue until application is complete
+6. **Quality Check** (Optional): Use handoff buttons to choose:
+   - **Code Review**: Iterative Code Reviewer examines code for quality, security, and best practices
+   - **Next Feature**: Skip review and proceed directly to the next feature for rapid iteration
+7. **Next Feature**: Hand back to Analyst, define next feature, repeat steps 3-6
+8. **Iterate**: Continue until application is complete
 
-**Best for**: Rapid prototyping with continuous feedback and visual validation
+**Best for**: Rapid prototyping with continuous feedback, visual validation, and optional quality assurance
 
 ### Linear Workflow (Complete Specification)
 
@@ -87,6 +93,7 @@ Simply open `/out/project/index.html` directly in Chrome or your preferred brows
 - **Dual Workflows**: Choose between iterative (feature-by-feature) or linear (complete spec) approaches
 - **Rapid Prototyping**: Go from concept to working demo in under 30 minutes
 - **GitHub Copilot Integration**: Custom agents optimized for AI-assisted development
+- **Quality Assurance**: Built-in code review agent with comprehensive security and quality checks
 - **Structured Discovery**: Focused questions that define requirements efficiently
 - **Streaming Implementation**: Real-time code generation with live preview
 - **Zero Build Time**: Pure vanilla HTML/CSS/JavaScript for instant feedback
@@ -105,9 +112,14 @@ The custom agents are configured in `.github/agents/` and are automatically avai
 
 **Iterative Developer** - Receives feature cards via handoff:
 - Implements features with streaming output
-- Auto-starts servers and opens browser preview
 - Provides testing instructions and waits for feedback
-- Use handoff button to return to Analyst for next feature
+- Use handoff buttons for next steps: code review or next feature
+
+**Iterative Code Reviewer** - Ensures code quality and security:
+- Comprehensive 6-part review: functionality & correctness, code quality & maintainability, security, performance, user experience, and best practices
+- Provides severity-based feedback (Critical 🔴, Important 🟡, Suggestions 🟢)
+- Balances thoroughness with rapid prototyping needs
+- Use handoff button to return to Developer for fixes or Analyst for next feature
 
 ### Linear Agents
 
