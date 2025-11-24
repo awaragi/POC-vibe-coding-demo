@@ -8,20 +8,49 @@ This repository contains AI agent prompts and case studies for building demo-rea
 
 ## Structure
 
-- **Agents/** - AI agent prompt templates
-  - `analysis-agent-interactive.md` - Interactive discovery and specification generation
-  - `implement-agent-interactive.md` - Autonomous implementation from specifications
+- **.github/agents/** - AI agent prompt templates
+  - **Iterative Workflow Agents**
+    - `iterative-analyst.agent.md` - Feature-by-feature discovery and orchestration
+    - `iterative-developer.agent.md` - Streaming feature implementation with rapid testing
+    - `iterative-code-review.agent.md` - Comprehensive code review with quality and security checks
+  - **Linear Workflow Agents**
+    - `linear-analyst.agent.md` - Complete app specification through interactive discovery
+    - `linear-developer.agent.md` - Full implementation from specification document
   
 - **Cases/** - Example use cases and requirements
   - `crm-case-01.md` - CRM opportunity pipeline application
 
-## Workflow
+- **Presentations/** - Project presentation materials
+  - `vibe-coding-agent-demo.md` - Marp presentation on AI-assisted development best practices
 
-1. **Discovery Phase**: Use the analysis agent to interactively define app requirements, screens, and user flows
-2. **Specification**: Generate a detailed specification document with implementation steps
-3. **Development Phase**: Use the implement agent to build the working prototype
-4. **Preview & Test**: View the application in your browser (see preview instructions below)
-5. Repeat 1-4
+## Workflows
+
+This framework supports two complementary workflows:
+
+### Iterative Workflow (Feature-by-Feature)
+
+Build applications incrementally with fast visual feedback:
+
+1. **Feature Discovery**: Iterative Analyst asks about the next feature and creates a feature card
+2. **Implementation**: Iterative Developer implements the feature and provides testing instructions
+3. **User Testing**: Test the feature in your browser and provide feedback
+4. **Quality Check** (Optional): Choose between:
+   - **Code Review**: Iterative Code Reviewer examines code for quality, security, and best practices
+   - **Next Feature**: Skip review and proceed directly to the next feature for rapid iteration
+5. **Iterate**: Repeat steps 1-4 until the application is complete
+
+**Best for**: Rapid prototyping with flexibility to balance speed and quality at each step.
+
+### Linear Workflow (Complete Specification)
+
+Define everything upfront, then implement:
+
+1. **Discovery Phase**: Linear Analyst guides interactive discovery of all app requirements
+2. **Specification**: Generate a complete specification document with implementation plan
+3. **Development Phase**: Linear Developer builds the entire application from the spec
+4. **Preview & Test**: View and test the completed application in your browser
+
+**Best for**: Well-defined projects where requirements are clear from the start.
 
 ## Previewing Generated Applications
 
@@ -53,27 +82,42 @@ Simply open `/out/project/index.html` directly in Chrome or your preferred brows
 ## Key Features
 
 - **Rapid Prototyping**: Go from concept to working demo in under 30 minutes
+- **Flexible Workflows**: Choose between iterative feature-by-feature or linear complete-spec approaches
+- **Quality Assurance**: Built-in code review agent with comprehensive security and quality checks
 - **Structured Discovery**: Focused questions that define requirements efficiently
 - **Step-by-Step Implementation**: Testable increments with clear validation
 - **Demo-Ready Output**: Polished applications suitable for executive presentations
 
-## AI Agent Prompts
+## Agent Descriptions
 
-### Analysis Agent Prompt
+### Iterative Workflow Agents
 
-```
-Please use the instructions in analysis agent file as your agent behavior and methodology. 
-Follow those guidelines exactly to analyze and design the requirements specified in case file.
-```
+**Iterative Analyst** - Orchestrates feature-by-feature development:
+- Creates focused feature cards stored in `/out/features/`
+- Asks about next feature after each implementation
+- Maintains incremental progress with fast feedback loops
 
-### Implementation Agent Prompt
+**Iterative Developer** - Implements features with streaming mode:
+- Reads feature cards and implements in `/out/project/`
+- Provides clear testing instructions after each feature
+- Offers handoff options: code review or next feature
 
-```
-You have two attached files: one contains the complete application specification with requirements
-and implementation plan, the other contains your role as an implementation agent with setup questions 
-and technical guidelines. Follow the agent instructions exactly to build the application described 
-in the specification.
-```
+**Iterative Code Reviewer** - Ensures code quality and security:
+- Comprehensive 6-part review: functionality, quality, security, performance, UX, best practices
+- Provides severity-based feedback (Critical 🔴, Important 🟡, Suggestions 🟢)
+- Balances thoroughness with rapid prototyping needs
+
+### Linear Workflow Agents
+
+**Linear Analyst** - Complete upfront specification:
+- Interactive discovery process (< 10 questions, < 10 minutes)
+- Generates detailed specification document in `/out/`
+- Defines all screens, data, and implementation steps
+
+**Linear Developer** - Full implementation from spec:
+- Builds complete application in autonomous or phased mode
+- Uses vanilla HTML/CSS/JavaScript for zero build time
+- Provides executable commands and automated testing
 
 ## Presentations
 
