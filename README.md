@@ -34,7 +34,7 @@ Build applications incrementally with fast visual feedback:
 1. **Feature Discovery**: Iterative Analyst asks about the next feature and creates a feature card
 2. **Implementation**: Iterative Developer implements the feature and provides testing instructions
 3. **User Testing**: Test the feature in your browser and provide feedback
-4. **Quality Check** (Optional): Choose between:
+4. **Quality Check** (Optional): Use handoff buttons to choose:
    - **Code Review**: Iterative Code Reviewer examines code for quality, security, and best practices
    - **Next Feature**: Skip review and proceed directly to the next feature for rapid iteration
 5. **Iterate**: Repeat steps 1-4 until the application is complete
@@ -103,7 +103,7 @@ Simply open `/out/project/index.html` directly in Chrome or your preferred brows
 - Offers handoff options: code review or next feature
 
 **Iterative Code Reviewer** - Ensures code quality and security:
-- Comprehensive 6-part review: functionality, quality, security, performance, UX, best practices
+- Comprehensive 6-part review: functionality & correctness, code quality & maintainability, security, performance, user experience, and best practices
 - Provides severity-based feedback (Critical 🔴, Important 🟡, Suggestions 🟢)
 - Balances thoroughness with rapid prototyping needs
 
