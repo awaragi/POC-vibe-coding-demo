@@ -15,7 +15,7 @@ This repository contains GitHub Copilot custom agent configurations and case stu
     - `iterative-code-review.agent.md` - Comprehensive code review with quality and security checks
   - **Linear Workflow Agents**
     - `linear-analyst.agent.md` - Interactive discovery and complete specification generation
-    - `linear-developer.agent.md` - Autonomous implementation from specifications
+    - `linear-developer.agent.md` - Autonomous implementation from specification
   
 - **Cases/** - Example use cases and requirements
   - `crm-case-01.md` - CRM opportunity pipeline application
@@ -112,7 +112,6 @@ The custom agents are configured in `.github/agents/` and are automatically avai
 
 **Iterative Developer** - Receives feature cards via handoff:
 - Implements features with streaming output
-- Auto-starts servers and opens browser preview
 - Provides testing instructions and waits for feedback
 - Use handoff buttons for next steps: code review or next feature
 
