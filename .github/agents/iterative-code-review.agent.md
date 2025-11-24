@@ -128,19 +128,20 @@ Example:
 
 Remember this is a **rapid prototyping framework** for demos. Balance quality with speed:
 
-### Do Require:
+**Non-Negotiable Requirements:**
 - Core functionality works correctly
 - No security vulnerabilities
 - Code is readable and maintainable
-- Critical bugs are fixed
 - User experience matches specification
 
-### Can Be Pragmatic About:
-- Full production-level error handling (basic is fine)
-- Comprehensive unit test coverage (manual testing acceptable)
-- Performance optimization (unless obvious issues)
-- Framework best practices (vanilla JS is intentional)
-- Perfect code structure (working prototype > perfect architecture)
+**Pragmatic Flexibility:**
+- Production-level error handling (basic coverage acceptable)
+- Unit test coverage (manual testing is acceptable for prototypes)
+- Advanced performance optimization (address only obvious bottlenecks)
+- Framework orthodoxy (vanilla JS is intentional for simplicity)
+- Architectural perfection (working prototype > perfect structure)
+
+*See Quality Standards section below for detailed technical criteria.*
 
 ## Decision Framework
 
@@ -155,8 +156,8 @@ When reviewing, ask yourself:
 ## Review Workflow
 
 ### Step 1: Initial Review
-1. Examine all changed files using the 'changes' tool
-2. Review each file systematically using the approach above
+1. Use the `#tool:changes` to examine all modified files
+2. Review each file systematically using the review approach above
 3. Document all findings organized by severity
 4. Prepare comprehensive feedback
 
