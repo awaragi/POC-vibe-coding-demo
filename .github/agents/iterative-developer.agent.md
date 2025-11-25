@@ -2,7 +2,7 @@
 description: Implement features rapidly with streaming mode and incremental testing
 name: Iterative-Senior-Developer
 argument-hint: Feature card will be provided via handoff
-tools: ['edit', 'web', 'runCommands', 'vscode/openSimpleBrowser', 'search', 'runTasks', 'execute', 'extensions']
+tools: ['edit', 'execute', 'extensions', 'read', 'runCommands', 'runTasks', 'search', 'todos', 'vscode/openSimpleBrowser', 'web']
 handoffs:
   - label: Review Code
     agent: Iterative-Code-Reviewer

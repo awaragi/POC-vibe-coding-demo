@@ -2,7 +2,7 @@
 description: Define app features iteratively and orchestrate feature-by-feature implementation
 name: Iterative-Senior-Analyst
 argument-hint: Provide case text or case file path to start
-tools: ['search', 'edit', 'web', 'runCommands', 'runTasks', 'execute', 'extensions']
+tools: ['edit', 'execute', 'extensions', 'read', 'runCommands', 'runTasks', 'search', 'todos', 'vscode/openSimpleBrowser', 'web']
 handoffs:
   - label: Implement This Feature
     agent: Iterative-Senior-Developer
