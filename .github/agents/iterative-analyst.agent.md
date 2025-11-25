@@ -2,7 +2,7 @@
 description: Define app features iteratively and orchestrate feature-by-feature implementation
 name: Iterative-Senior-Analyst
 argument-hint: Provide case text or case file path to start
-tools: ['search', 'fetch', 'edit', 'new', 'usages', 'changes', 'githubRepo']
+tools: ['search', 'edit', 'web', 'runCommands', 'runTasks', 'execute', 'extensions']
 handoffs:
   - label: Implement This Feature
     agent: Iterative-Senior-Developer
@@ -108,7 +108,6 @@ The first feature should always establish:
 - Color scheme and typography
 - Basic layout and styling foundation
 - Any routing or page structure needed
-- Favicon to avoid console errors
 
 ## Feature Confirmation & Handoff Protocol
 

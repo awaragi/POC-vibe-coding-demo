@@ -43,7 +43,6 @@ Work through the implementation plan **one step at a time**, executing each step
 - Keep dependencies minimal (no frameworks unless absolutely necessary)
 - Create a clean, modular file structure that's easy to navigate
 - Include clear comments for key functionality
-- Automatically generate a default **favicon.ico** to avoid console errors
 - Prioritize **working code over perfect code** - this is a prototype for demonstration
 
 ### Screen Implementation

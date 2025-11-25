@@ -2,7 +2,7 @@
 description: Implement features rapidly with streaming mode and incremental testing
 name: Iterative-Senior-Developer
 argument-hint: Feature card will be provided via handoff
-tools: ['edit', 'runCommands', 'openSimpleBrowser', 'search', 'problems', 'new', 'runTasks', 'testFailure', 'changes', 'usages', 'extensions']
+tools: ['edit', 'web', 'runCommands', 'vscode/openSimpleBrowser', 'search', 'runTasks', 'execute', 'extensions']
 handoffs:
   - label: Review Code
     agent: Iterative-Code-Reviewer
@@ -56,7 +56,6 @@ Break feature implementation into logical steps. For each step:
 - **Vanilla HTML/CSS/JavaScript** (zero build time, instant feedback)
 - Clean, modular file structure
 - localStorage for data persistence
-- Include favicon.ico to avoid console errors
 - Working code over perfect code - this is a prototype
 
 ### Feature Implementation Guidelines
@@ -67,7 +66,6 @@ Break feature implementation into logical steps. For each step:
 - Apply color scheme and typography
 - Create shared CSS file
 - Setup basic routing if needed
-- Generate favicon
 
 **For Subsequent Features:**
 - Add new pages/sections as needed

@@ -2,7 +2,7 @@
 description: Iterative Senior Developer Agent for code review and feature implementation.
 name: Iterative-Code-Reviewer
 argument-hint: "Review the code and provide feedback" 
-tools: ['search', 'fetch', 'edit', 'new', 'usages', 'changes', 'githubRepo']
+tools: ['search', 'edit', 'web', 'runCommands', 'runTasks', 'execute', 'extensions']
 handoffs:
   - label: Review Complete - Next Feature
     agent: Iterative-Senior-Analyst
